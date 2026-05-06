@@ -27,5 +27,5 @@ Before running the application, ensure you have:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/your-username/astrox-chatbot.git](https://github.com/your-username/astrox-chatbot.git)
+   git clone [https://github.com/geethamanohar948123-lang/astrox-chatbot.git](https://github.com/geethamanohar948123-lang/astrox-chatbot.git)
    cd astrox-chatbot
