@@ -1,0 +1,159 @@
+/* Reset and Base Layout */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #050505; /* Deep black background */
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Horizontal Center */
+    align-items: center;     /* Vertical Center */
+    overflow: hidden;
+}
+
+/* Background "Glow" Effect */
+body::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 255, 65, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: -1;
+}
+
+/* The Login Card */
+.login-card {
+    background: #111111;
+    width: 380px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+/* Terminal Header Bar */
+.terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.title {
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+/* Form Content */
+.content {
+    padding: 40px;
+}
+
+h1 {
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+p {
+    font-size: 0.75rem;
+    color: #00ff41; /* Terminal Green */
+    margin-bottom: 35px;
+    opacity: 0.7;
+}
+
+/* Input Styling */
+.form-group {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    color: #00ff41;
+    width: 100%;
+    padding: 10px 5px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+}
+
+input::placeholder {
+    color: #444;
+    font-size: 0.8rem;
+}
+
+.line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #00ff41;
+    transition: width 0.4s ease;
+}
+
+input:focus + .line {
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+/* Button Styling */
+.auth-btn {
+    background: transparent;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    width: 100%;
+    padding: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+
+.auth-btn:active {
+    background: #00ff41;
+    color: #000;
+}
+
+/* Status Messages */
+#status-message {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    min-height: 1.2rem;
+}
+
+.error { color: #ff3e3e; }
+.success { color: #00ff41; }
+.processing { color: #888; }
