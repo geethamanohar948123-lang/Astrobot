@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+    body {
+        background-color: #0d0d0d;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #00ffcc;
+        margin-bottom: 15px;
+    }
+
+    #chatbox {
+        height: 300px;
+        width: 90%;
+        max-width: 600px;
+        margin: auto;
+        overflow-y: auto;
+        border-radius: 10px;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        padding: 10px;
+        text-align: left;
+        box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+    }
+
+    #chatbox p {
+        margin: 8px 0;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    /* User message */
+    #chatbox p b:first-child {
+        color: #00bfff;
+    }
+
+    /* AI message */
+    #chatbox p b:last-child {
+        color: #0000ff;
+    }
+
+    #input {
+        width: 70%;
+        max-width: 450px;
+        padding: 10px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        background: #262626;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin-left: 5px;
+        border: none;
+        border-radius: 8px;
+        background: #00ffcc;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #00ccaa;
+    }
+    .login-btn {
+    background: transparent;
+    color: #00ff88;
+    border: 2px solid #00ff88;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 5px #00ff88;
+}
+
+/* Hover Effect */
+.login-btn:hover {
+    background: #00ff88;
+    color: black;
+    box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88;
+    transform: scale(1.05);
+}
+
+/* Click Effect */
+.login-btn:active {
+    transform: scale(0.95);
+}
+</style>
+</head>
+<body>
+
+<h2>Reverse Thinking Chatbot</h2>
+
+<div id="chatbox" ></div>
+
+<input id="input" placeholder="Enter your goal">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+function sendMessage() {
+    let msg = document.getElementById("input").value;
+
+    fetch("/send", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: msg})
+    })
+    .then(res => res.json())
+    .then(data => {
+        let chat = document.getElementById("chatbox");
+
+        chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+        chat.innerHTML += "<p><b>AI:</b><br>" + data.reply.replace(/\n/g, "<br>") + "</p>";
+
+        chat.scrollTop = chat.scrollHeight; // auto scroll
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+</script>
+
+</body>
+</html>
